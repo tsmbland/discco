@@ -21,7 +21,7 @@ To do:
 """
 
 
-class Discco2:
+class Discco:
     def __init__(self, img, roi, cytbg=None, membg=None, thickness=50, batch_norm=False, zerocap=True, pooling_rate=1,
                  norm_factor=None, rol_ave=1, nfits=None):
 

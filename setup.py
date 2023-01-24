@@ -7,5 +7,12 @@ setup(
     author='Tom Bland',
     author_email='tom_bland@hotmail.co.uk',
     packages=find_packages(),
-    install_requires=[]
+    install_requires=['numpy',
+                      'matplotlib',
+                      'pandas',
+                      'tqdm',
+                      'jax',
+                      'optax',
+                      'scikit-image',
+                      'par-segmentation']
 )

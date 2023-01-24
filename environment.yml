@@ -1,6 +1,0 @@
-name: discco
-channels:
-  - conda-forge
-  - defaults
-dependencies:
-

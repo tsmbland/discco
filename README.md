@@ -22,13 +22,13 @@ where c<sub>cyt</sub> and c<sub>mem</sub> are cytoplasmic and membrane concentra
 Building the model using the differentiable programming language JAX allows input parameters to be iteratively adjusted by backpropagation to minimise the mean squared error between simulated images and ground truth images: 
 
 <p align="center">
-    <img src="docs/schematic.png" width="100%" height="100%"/>
+    <img src="https://raw.githubusercontent.com/tsmbland/discco/master/docs/schematic.png" width="100%" height="100%"/>
 </p>
 
 In doing so, both the image-specific concentration parameters and the underlying quantification model (i.e. s<sub>mem</sub> and s<sub>cyt</sub>) can be optimised, allowing for closer simulations and more accurate quantification:
 
 <p align="center">
-    <img src="docs/simulation comparison.png" width="100%" height="100%"/>
+    <img src="https://raw.githubusercontent.com/tsmbland/discco/master/docs/simulation comparison.png" width="100%" height="100%"/>
 </p>
 
 For full details of the method, see

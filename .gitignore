@@ -1,3 +1,5 @@
 .idea/
 dist/
 discco.egg-info/
+/docs/simulation comparison.ai
+/docs/schematic.ai

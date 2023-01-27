@@ -6,7 +6,7 @@
 Quantification of membrane and cytoplasmic concentrations based on differentiable simulation of cell cortex images.
 Designed for use on images of PAR proteins in C. elegans zygotes.
 
-This extends on the segmentation and straightening algorithm described [here](https://github.com/tsmbland/par-segmentation), and uses similar underlying methods.
+This extends on the segmentation and straightening algorithm described [here](https://github.com/tsmbland/par-segmentation), and uses straightened cortices obtained by that method as input.
 
 ## Methods
 
@@ -31,7 +31,7 @@ In doing so, both the image-specific concentration parameters and the underlying
     <img src="https://raw.githubusercontent.com/tsmbland/discco/master/docs/simulation comparison.png" width="100%" height="100%"/>
 </p>
 
-For full details of the model and training procedure, see
+For full details of the model and training procedures, see
 
 PAPER IN PREP
 

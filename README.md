@@ -12,7 +12,7 @@ This extends on the segmentation and straightening algorithm described [here](ht
 
 Our method is adapted from previous methods that model cross-cortex intensity profiles at each position around the cortex as the sum of distinct cytoplasmic and membrane signal components (Gross et al., 2018; Reich et al., 2019). 
 Typically, these two components are modelled as an error function and Gaussian function respectively, representing the expected shape of a step and a point convolved by a Gaussian point spread function (PSF) in one dimension. 
-In our model we relax these assumptions to account for the possibility of a non-Gaussian PSF and complex light-scattering properties which cannot be captured with these simplistic descriptions. 
+In our model we relax these assumptions to account for the possibility of a non-Gaussian PSF and complex light-scattering behaviours which cannot be captured with these simplistic descriptions. 
 Instead, cytoplasmic and membrane signal profiles are modelled as arbitrary vectors of length 50 pixels which can take on any shape (s<sub>mem</sub> and s<sub>cyt</sub>). 
 Full straightened images can then be simulated as the addition of two tensor products:
 
@@ -31,7 +31,7 @@ In doing so, both the image-specific concentration parameters and the underlying
     <img src="https://raw.githubusercontent.com/tsmbland/discco/master/docs/simulation comparison.png" width="100%" height="100%"/>
 </p>
 
-For full details of the method, see
+For full details of the model and training procedure, see
 
 PAPER IN PREP
 

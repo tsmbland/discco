@@ -58,6 +58,7 @@ class Discco:
 
         # Fitting parameters
         self.zerocap = zerocap
+        self.swish_factor = 30
 
         # Membrane/cytoplasmic reference profile
         self.cytbg = cytbg
@@ -92,11 +93,11 @@ class Discco:
     def segment(self, freedom=10, roi_knots=20, lr=0.01, descent_steps=500):
 
         # Set up segmenter class
-        iq = ImageQuant(img=self.img, roi=self.roi, periodic=True, thickness=self.thickness, rol_ave=10, rotate=False,
+        iq = ImageQuant(img=self.img, roi=self.roi, periodic=True, thickness=self.thickness, rol_ave=5, rotate=False,
                         nfits=100, iterations=1, lr=lr, descent_steps=descent_steps, adaptive_sigma=False,
                         batch_norm=False, freedom=freedom, roi_knots=roi_knots, fit_outer=True, save_training=False,
                         save_sims=False, method='GD', itp=10, parallel=False, zerocap=False, cores=None,
-                        bg_subtract=False, interp='cubic')
+                        bg_subtract=False, interp='cubic', sigma=3.5)
 
         # Run segmentation
         iq.run()
@@ -187,7 +188,7 @@ class Discco:
         @jax.jit
         def loss_function(_params):
             sim = sim_img_batch(_params['cyts_opt'], _params['mems_opt'], self.cytbg_opt,
-                                self.membg_opt, self.zerocap)
+                                self.membg_opt, self.zerocap, self.swish_factor)
             loss_full = masked_loss_function(sim, self.target, self.masks)
             return jnp.mean(loss_full), loss_full
 
@@ -240,7 +241,7 @@ class Discco:
         @jax.jit
         def loss_function(params):
             sim = sim_img_batch(params['cyts_opt'], params['mems_opt'], self.cytbg_opt,
-                                params['membg_opt'], self.zerocap)
+                                params['membg_opt'], self.zerocap, self.swish_factor)
             loss_full = masked_loss_function(sim, self.target, self.masks)
             return jnp.mean(loss_full), loss_full
 
@@ -291,7 +292,7 @@ class Discco:
         @jax.jit
         def loss_function(_params):
             sim = sim_img_batch(_params['cyts_opt'], self.mems_opt, _params['cytbg_opt'],
-                                self.membg_opt, self.zerocap)
+                                self.membg_opt, self.zerocap, self.swish_factor)
             loss_full = masked_loss_function(sim, self.target, self.masks)
             return jnp.mean(loss_full), loss_full
 
@@ -427,7 +428,8 @@ class Discco:
 
     def _store(self):
         # Final simulation
-        self.sim = sim_img_batch(self.cyts_opt, self.mems_opt, self.cytbg_opt, self.membg_opt, zerocap=self.zerocap)
+        self.sim = sim_img_batch(self.cyts_opt, self.mems_opt, self.cytbg_opt, self.membg_opt, zerocap=self.zerocap,
+                                 swish_factor=self.swish_factor)
 
         # Images: remove padded regions and rescale
         self.straight_images = [img.T[mask == 1].T * norm for img, mask, norm in
@@ -437,8 +439,8 @@ class Discco:
 
         # Save and rescale quantification results
         if self.zerocap:
-            _m = self.mems_opt * sigmoid(30 * self.mems_opt)
-            _c = self.cyts_opt * sigmoid(30 * self.cyts_opt)
+            _m = self.mems_opt * sigmoid(self.swish_factor * self.mems_opt)
+            _c = self.cyts_opt * sigmoid(self.swish_factor * self.cyts_opt)
             self.mems = [m[mask == 1] * norm for m, mask, norm in zip(_m, self.masks, self.norms)]
             self.cyts = [c * norm * np.ones(int(np.sum(mask))) for c, mask, norm in
                          zip(_c, self.masks, self.norms)]
@@ -568,7 +570,7 @@ class Discco:
         return fig, ax
 
 
-def sim_img_batch(cyts, mems, cytbg, membg, zerocap):
+def sim_img_batch(cyts, mems, cytbg, membg, zerocap, swish_factor):
     """
     [nimgs, thickness, nfits]
 
@@ -583,7 +585,7 @@ def sim_img_batch(cyts, mems, cytbg, membg, zerocap):
 
     # Cytoplasm zerocap
     if zerocap:
-        _cyt *= sigmoid(30 * _cyt)
+        _cyt *= sigmoid(swish_factor * _cyt)
 
     # Cytoplasmic signal contribution
     cyt_total = _cytbg * _cyt
@@ -596,7 +598,7 @@ def sim_img_batch(cyts, mems, cytbg, membg, zerocap):
 
     # Membrane zerocap
     if zerocap:
-        _mem = _mem * sigmoid(30 * _mem)
+        _mem = _mem * sigmoid(swish_factor * _mem)
 
     # Membrane signal contribution
     mem_total = _membg * _mem

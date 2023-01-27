@@ -616,4 +616,4 @@ Legacy naming
 
 """
 
-ImageQuant2 = Discco2
+ImageQuant2 = Discco

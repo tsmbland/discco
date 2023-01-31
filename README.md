@@ -35,14 +35,13 @@ For full details of the model and training procedures, see
 
 PAPER IN PREP
 
+And the accompanying GitHub repository:
+
+IN PREP
+
 ## Installation
 
     pip install discco
-
-## Instructions
-
-Binder link (TO DO)
-
 
 ## License
 

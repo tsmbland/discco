@@ -10,11 +10,11 @@ This extends on the segmentation and straightening algorithm described [here](ht
 
 ## Methods
 
-Our method is adapted from previous methods that model intensity profiles perpendicular to the membrane as the sum of distinct cytoplasmic and membrane signal components (Gross et al., 2018; Reich et al., 2019). Typically these two components are modelled as an error function and Gaussian function respectively, representing the expected shape of a step and a point convolved by a Gaussian point spread function (PSF) in one dimension. Using this model, one can generate simulated images of straightened cortices as the sum of two tensor products which represent distinct membrane and cytoplasmic signal contributions (Figure 1):
+Our method is adapted from previous methods that model intensity profiles perpendicular to the membrane as the sum of distinct cytoplasmic and membrane signal components (Gross et al., 2018; Reich et al., 2019). Typically these two components are modelled as an error-function and Gaussian function respectively, representing the expected shape of a step and a point convolved by a Gaussian point spread function (PSF) in one dimension. Using this model, one can generate simulated images of straightened cortices as the sum of two tensor products which represent distinct membrane and cytoplasmic signal contributions (Figure 1):
 
 sim = c<sub>cyt</sub> ⊗ s<sub>cyt</sub> + c<sub>mem</sub> ⊗ s<sub>mem</sub>
 
-where c<sub>cyt</sub> and c<sub>mem</sub> are cytoplasmic and membrane concentration profiles and s<sub>cyt</sub> and s<sub>mem</sub> are, by default, Gaussian and error function profiles. We impose the constraint that the cytoplasmic concentration c<sub>cyt</sub> is uniform throughout each image.
+where c<sub>cyt</sub> and c<sub>mem</sub> are cytoplasmic and membrane concentration profiles and s<sub>cyt</sub> and s<sub>mem</sub> are, by default, error-function and Gaussian profiles. We impose the constraint that the cytoplasmic concentration c<sub>cyt</sub> is uniform throughout each image.
 <p align="center">
     <img src="https://raw.githubusercontent.com/tsmbland/discco/master/docs/schematic.png" width="100%" height="100%"/>
     <i>Figure 1: Schematic of differentiable model for image quantification</i>

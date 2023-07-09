@@ -17,17 +17,19 @@ sim = c<sub>cyt</sub> ⊗ s<sub>cyt</sub> + c<sub>mem</sub> ⊗ s<sub>mem</sub>
 where c<sub>cyt</sub> and c<sub>mem</sub> are cytoplasmic and membrane concentration profiles and s<sub>cyt</sub> and s<sub>mem</sub> are, by default, Gaussian and error function profiles. We impose the constraint that the cytoplasmic concentration c<sub>cyt</sub> is uniform throughout each image.
 <p align="center">
     <img src="https://raw.githubusercontent.com/tsmbland/discco/master/docs/schematic.png" width="100%" height="100%"/>
+    <i>Figure 1: Schematic of differentiable model for image quantification</i>
 </p>
-<center><i>Figure 1: Schematic of differentiable model for image quantification</i></center>
 <br>
 
 Using a differentiable programming paradigm, the input parameters to the model can be iteratively adjusted by backpropagation to minimize the mean squared error between simulated images and ground truth images.
 As well as allowing the image-specific concentration parameters (c<sub>cyt</sub> and c<sub>mem</sub>) to be learnt, this procedure also allows the global signal profiles s<sub>cyt</sub> and s<sub>mem</sub> to be optimised and take any arbitrary form, allowing the model to generalise beyond a simple Gaussian PSF model and account for complex sample-specific light-scattering behaviors. In practice we find that this additional flexibility is necessary to minimise model bias and prevent underfitting:
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/tsmbland/discco/master/docs/simulation comparison.png" width="100%" height="100%"/>
-</p>
-<center><i>Figure 2: Example of ground truth and simulated images. Naive model refers to a mechanistic optical model with a Guassian PSF. Gaussian noise has been added to simulated images to allow for closer visual comparison to the ground truth image.</i></center>
+    <img src="https://raw.githubusercontent.com/tsmbland/discco/master/docs/simulation comparison.png" width="80%" height="80%"/>
+    <br>
+    <i>Figure 2: Example of ground truth and simulated images. Naive model refers to a mechanistic optical model with a Guassian PSF. Gaussian noise has been added to simulated images to allow for closer visual comparison to the ground truth image.</i>
+   
+</p>  
 <br>
 
 An additional step, described in the paper, puts the cytoplasmic and membrane concentrations outputted by the model into biologically meaningful units, which has great utility for mathematical models.

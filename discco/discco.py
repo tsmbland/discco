@@ -472,7 +472,7 @@ class Discco:
         for i, (m, c, _id) in enumerate(zip(self.mems, self.cyts, ids)):
 
             # Construct dictionary
-            df_dict = {'EmbryoID': _id * np.ones(len(m)),
+            df_dict = {'EmbryoID': [_id] * len(m),
                        'Position': np.arange(len(m)),
                        'Membrane signal': m,
                        'Cytoplasmic signal': c}

@@ -1,6 +1,8 @@
 # DISCCo: Differentiable Image Simulation of the Cell Cortex
 
 [![CC BY 4.0][cc-by-shield]][cc-by]
+[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![PyPi version](https://badgen.net/pypi/v/discco/)](https://pypi.org/project/discco)
 
 Quantification of membrane and cytoplasmic concentrations based on differentiable simulation of cell cortex images.

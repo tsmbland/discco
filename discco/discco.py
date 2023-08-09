@@ -1,29 +1,17 @@
-from skimage.measure import block_reduce
-from par_segmentation import (
-    ImageQuant,
-    straighten,
-    interp_roi,
-    offset_coordinates,
-    view_stack,
-    view_stack_jupyter,
-    plot_quantification_jupyter,
-    plot_quantification,
-    plot_segmentation,
-    plot_fits,
-    plot_fits_jupyter,
-    plot_segmentation_jupyter,
-    in_notebook,
-    erf,
-    rolling_ave_2d,
-    interp_2d_array,
-)
-import jax.numpy as jnp
-from jax.nn import sigmoid
 import jax
-import optax
-import numpy as np
-import pandas as pd
+import jax.numpy as jnp
 import matplotlib.pyplot as plt
+import numpy as np
+import optax
+import pandas as pd
+from jax.nn import sigmoid
+from par_segmentation import (ImageQuant, erf, in_notebook, interp_2d_array,
+                              interp_roi, offset_coordinates, plot_fits,
+                              plot_fits_jupyter, plot_quantification,
+                              plot_quantification_jupyter, plot_segmentation,
+                              plot_segmentation_jupyter, rolling_ave_2d,
+                              straighten, view_stack, view_stack_jupyter)
+from skimage.measure import block_reduce
 from tqdm import tqdm
 
 """

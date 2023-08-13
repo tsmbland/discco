@@ -36,13 +36,12 @@ As well as allowing the image-specific concentration parameters (c<sub>cyt</sub>
 
 An additional step, described in the paper, puts the cytoplasmic and membrane concentrations outputted by the model into biologically meaningful units, which has great utility for mathematical models.
 
-For full details of the model and training procedures, see
+For full details of the model and training procedures, see the paper:
 
-PAPER IN PREP
+[Optimized dimerization of the PAR-2 RING domain drives cooperative and selective membrane recruitment for robust feedback-driven cell polarization](https://www.biorxiv.org/content/10.1101/2023.08.10.552581v1)
 
-And the accompanying GitHub repository:
+And the accompanying [GitHub repository](https://github.com/goehringlab/2023-Bland-par2)
 
-IN PREP
 
 ## Installation
 

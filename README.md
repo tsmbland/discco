@@ -10,6 +10,10 @@ Designed for use on images of PAR proteins in C. elegans zygotes.
 
 This extends on the segmentation and straightening algorithm described [here](https://github.com/tsmbland/par-segmentation), and uses straightened cortices obtained by that method as input.
 
+## Installation
+
+    pip install discco
+
 ## Methods
 
 Our method is adapted from previous methods that model intensity profiles perpendicular to the membrane as the sum of distinct cytoplasmic and membrane signal components (Gross et al., 2018; Reich et al., 2019). Typically these two components are modelled as an error-function and Gaussian function respectively, representing the expected shape of a step and a point convolved by a Gaussian point spread function (PSF) in one dimension. Using this model, one can generate simulated images of straightened cortices as the sum of two tensor products which represent distinct membrane and cytoplasmic signal contributions (Figure 1):
@@ -38,14 +42,14 @@ An additional step, described in the paper, puts the cytoplasmic and membrane co
 
 For full details of the model and training procedures, see the paper:
 
-[Optimized dimerization of the PAR-2 RING domain drives cooperative and selective membrane recruitment for robust feedback-driven cell polarization](https://www.biorxiv.org/content/10.1101/2023.08.10.552581v1)
+[Optimized dimerization of the PAR-2 RING domain drives cooperative and selective membrane recruitment for robust feedback-driven cell polarization](https://www.biorxiv.org/content/10.1101/2023.08.10.552581v1) (preprint)
 
-And the accompanying [GitHub repository](https://github.com/goehringlab/2023-Bland-par2)
+And the accompanying [GitHub repository](https://github.com/goehringlab/2023-Bland-par2).
 
+Limitations:
+- Relies on a few assumptions about the system (uniform cytoplasmic concentration, rotational symmetry)
+- Requires several calibrations with a few different samples
 
-## Installation
-
-    pip install discco
 
 ## License
 

@@ -7,7 +7,6 @@ import pandas as pd
 from jax.nn import sigmoid
 from par_segmentation import (
     ImageQuant,
-    erf,
     in_notebook,
     interp_2d_array,
     interp_roi,
@@ -25,6 +24,7 @@ from par_segmentation import (
 )
 from skimage.measure import block_reduce
 from tqdm import tqdm
+from scipy.special import erf
 
 """
 To do:

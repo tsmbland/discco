@@ -604,17 +604,8 @@ class Discco:
         if ids is None:
             ids = np.arange(self.nimgs)
 
-        # Create empty dataframe
-        df = pd.DataFrame(
-            {
-                "EmbryoID": [],
-                "Position": [],
-                "Membrane signal": [],
-                "Cytoplasmic signal": [],
-            }
-        )
-
         # Loop through embryos
+        _dfs = []
         for i, (m, c, _id) in enumerate(zip(self.mems, self.cyts, ids)):
 
             # Construct dictionary
@@ -630,8 +621,11 @@ class Discco:
                 for key, value in extra_columns.items():
                     df_dict[key] = [value[i] for _ in range(len(m))]
 
-            # Append to dataframe
-            df = df.append(pd.DataFrame(df_dict))
+            # Append to list
+            _dfs.append(pd.DataFrame(df_dict))
+
+        # Combine
+        df = pd.concat(_dfs)
 
         # Reorder columns
         if extra_columns is not None:

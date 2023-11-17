@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools"]
+
+[tool.setuptools]
+packages = ["discco"]
+
+[project]
+name = "discco"
+description = "Quantification of membrane and cytoplasmic concentrations based on differentiable simulation of cell cortex images"
+readme = "README.md"
+version = "0.2.7"
+license = {file = "LICENSE"}
+authors = [
+    { name = "Tom Bland", email = "tom_bland@hotmail.co.uk" },
+]
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "pandas",
+    "tqdm",
+    "jax",
+    "optax",
+    "scikit-image",
+    "par-segmentation>=0.1.12",
+]
+
+[project.urls]
+Source = "https://github.com/tsmbland/discco"
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit",
+    "black",
+    "pip-tools",
+]
+
